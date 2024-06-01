@@ -1,0 +1,308 @@
+Stack:
+  This term "stack" can refer to both a data structure and a type of memory.
+    Depending on the context.
+===================================================================================================
+Stack as a Data Structure:
+  Abstract data type.
+  Fundamental collection type that follows the Last-In, First-Out (LIFO) principle. 
+    The last element added to the stack will be the first one to be removed. 
+  It is commonly used in various algorithms and operations such as:
+    Function Calls: 
+      Managing the execution order of nested function calls.
+    Expression Evaluation: 
+      Converting infix expressions to postfix or evaluating postfix expressions.
+    Backtracking Algorithms: 
+      Such as those used in depth-first search (DFS) in graphs and mazes.
+  Basic Operations:
+    Push: Add an element to the top of the stack.
+    Pop: Remove the element from the top of the stack.
+    Peek/Top: Retrieve the top element without removing it.
+    IsEmpty: Check if the stack is empty.
+===================================================================================================
+Stack as a Type of Memory -Memory Stack-:
+  Type of memory used for different purposes during the execution of a program.
+  Specifically used by the CPU and operating system.
+  Region of memory that stores and manage:
+    function calls:
+      Storing return addresses, parameters, and local variables for active function calls.
+    local variables.
+    Control flow information:
+      The data that the JS engine needs to manage and track the order in which code is executed. 
+        Specifically, it includes:
+          Return Addresses: 
+            Where the program should return after a function call is completed. 
+              Allows the engine to know which line of code to execute next after the fn finishes.
+          Current Execution Line: 
+            The specific point in the program where execution is taking place. 
+              Helps in tracking the progress of code execution. 
+                Especially when dealing with nested fn calls.
+      Data on where to return after each function call and the current execution point. 
+        Enabling JS engine to:
+          Manage the sequence of function executions.
+          Resume at the correct spot after each function returns.
+      Keeping track of: 
+        Which function is currently executing.
+        What happens next when the function returns.
+  Operates in a Last-In, First-Out (LIFO) manner. 
+    The most recently added item is the first to be removed.
+  Characteristics of the Stack:
+    LIFO Structure: 
+      The stack grows and shrinks dynamically with each function call and return.
+    Memory Allocation: 
+      Memory allocation and deAllocation on the stack are very fast.
+        it simply involves moving the stack pointer up or down. 
+    Scope and Lifetime: 
+      Variables allocated on the stack are automatically deAllocated. 
+        When the function that created them returns. 
+        These variables have a very limited scope and lifetime.
+    Size Limitation: 
+      The stack is usually smaller than the heap and has a limit on its size. 
+        Can lead to stack overflow if too much memory is used (e.g., deep recursion).
+    Fast Access: 
+      Access to stack memory is faster due to its sequential and managed nature.
+===================================================================================================
+Heap:
+  Type of memory used for different purposes during the execution of a program.
+  Region of memory used for dynamic memory allocation. 
+    Variables are allocated memory at runtime, and their size can change dynamically.
+      Dynamic Allocation: 
+        Heap allows for dynamic memory allocation.
+          Variables can be created and destroyed at any time during the program execution.
+      No Specific Order: 
+        Heap does not follow a specific order for allocation and deAllocation.
+        Unlike the stack.
+      Memory Management: 
+        Memory management on the heap is more complex.
+          Involves the use of garbage collection in languages like JavaScript. 
+          Memory must be explicitly managed by the programmer in languages like C/C++.
+      Scope and Lifetime: 
+        Variables on the heap can: 
+          Have a global scope.
+          Exist for the duration of the program unless explicitly deAllocated.
+      Size: 
+        Generally much larger than the stack.
+        Can grow as needed, limited only by the system’s available memory.
+===================================================================================================
+Stack && Heap:
+  Differences Between Stack and Heap
+    Structure:
+      Stack: Organized as a LIFO structure.
+      Heap: Unorganized and used for dynamic memory allocation.
+    Allocation and DeAllocation:
+      Stack: Automatically managed through function calls and returns.
+      Heap: Managed manually or through garbage collection.
+    Speed:
+      Stack: Faster access due to its sequential nature.
+      Heap: Slower access due to dynamic allocation and potential fragmentation.
+    Memory Size:
+      Stack: Limited size, fixed for each program.
+      Heap: Larger, flexible, and limited only by system memory.
+    Usage:
+      Stack: Suitable for static memory allocation, local variables, and function calls.
+      Heap: Suitable for
+        dynamic memory allocation. 
+        objects. 
+        Data structures that need to persist beyond the function scope.
+===================================================================================================
+Call Stack
+  Mechanism that the JavaScript engine uses to keep track of function calls. 
+  Mechanism used by the JS engine to manage the stack memory specifically for function execution.
+  It follows the Last-In, First-Out (LIFO) principle.
+    Meaning the most recently added function call is the first one to be executed and completed.
+  How the Call Stack Works:
+    Script Execution Starts: 
+      When the JS engine starts executing your code:
+        The global execution context is created and pushed onto the call stack.
+          The default context where all code runs initially.
+    Function Invocation: 
+      When a function is called, a new frame is pushed onto the stack. 
+      This frame contains details about the function, such as: 
+        Its parameters.
+        Local variables.
+        Location where the function should return after execution.
+    Execution Contexts: 
+      When a function is invoked, an execution context is created and pushed onto the call stack. 
+        This context contains:
+          The function’s arguments. 
+          Local variables. 
+          Information about how to return to the caller.
+            The return address -where to return after the function finishes-.
+          the `this` keyword value. 
+    Function Execution: 
+      The JavaScript engine executes the function at the top of the stack.
+    Function Return: 
+      When a function finishes execution: 
+        Its frame is popped from the stack. 
+        The control is returned to the previous function.
+    Stack Overflow: 
+      If too many function calls are made without returning -stack limit is exceeded-:
+        The call stack can exceed its limit, resulting in a stack overflow error.
+    Automatic Management: 
+      JavaScript engine manages the call stack automatically. 
+        Pushing and popping frames as functions are called and returned.
+    Function Invocation Tracking: 
+      The call stack keeps track of where each function is in the execution process.
+    Memory Management: 
+      The call stack handles memory allocation for function execution contexts. 
+        When a function is called, memory is allocated for its context. 
+        When the function returns, the memory is deAllocated.
+  Stack Allocation: 
+    Memory for function execution contexts is allocated in a stack-like manner: 
+      where each new function call creates a new frame (or context) that is pushed onto the stack. 
+      When a function completes, its frame is popped off the stack. 
+        DeAllocating the memory associated with it.
+===================================================================================================
+Global Execution Context:
+  In JavaScript is the default context in which all code initially runs. 
+  The first context created when your script runs. 
+    Providing the scope for global variables and functions. 
+    It remains active for the lifetime of the application. 
+    The base context upon which all other fn contexts are built and managed via the call stack.
+  When a JavaScript program starts, is created first. 
+    It is the base execution context in which your code runs before any functions are called.
+  Within the Global Execution Context: 
+    `this` keyword refers to the global object. 
+      In a browser, this is the `window` object; in Node.js, it’s the `global` object.
+  Variables and functions defined in the it are available anywhere in your code. 
+    Unless they are shadowed by local variables.
+  Components of the Global Execution Context:
+    Global Object: 
+      Contains built-in objects like: 
+        Array, Object, String, and functions like setTimeout. 
+        User-defined variables and functions.
+    `this` Keyword: 
+      Refers to the global object.
+===================================================================================================
+local variable 
+  In programming is a variable that is declared within a specific scope, such as: 
+    Within a function or a block of code. 
+  Characteristics of Local Variables
+    Scope: 
+      LV are accessible only within the block of code or fn in which they are declared. 
+        They cannot be accessed from outside that scope.
+    Lifetime: 
+      LV Lifetime is limited to the execution of the block of code or fn in which it is declared. 
+        Once the block of code or fn completes execution:
+          The LV declared within it are typically destroyed.
+    Shadowing: 
+      If a local variable shares the same name as a variable in an outer scope:
+        It SHADOWS the outer variable within its scope. 
+          The LV takes precedence over the outer variable within its scope.
+  LV are essential for encapsulating data within specific scopes. 
+    Helping to organize and manage data effectively within programs. 
+    They provide a way to store temporary data that is only needed within a: 
+      Particular block of code or function, without cluttering the global scope.
+===================================================================================================
+Call Stack && Web APIs && Callback Queue && Event Loop: 
+  Single-Threaded: 
+    Js is single-threaded, meaning it has only one call stack and can do one thing at a time.
+  Call Stack: 
+    Where JavaScript keeps track of function calls. 
+    It operates on a Last-In, First-Out -LIFO- principle.
+  Web APIs: 
+    Provided by the browser -or Node.js-. 
+    These are APIs for asynchronous operations -e.g., `setTimeout`, HTTP requests-.
+    Handle asynchronous operations outside the JavaScript engine.
+  Callback Queue: 
+    Also known as the task queue, this is where asynchronous callbacks are queued for execution.
+    Holds asynchronous callbacks until the call stack is empty.
+  Event Loop: 
+    Mechanism that coordinates the execution of the code.
+      Handling the call stack and the callback queue.
+    Continuously checks the call stack and callback queue. 
+      Ensuring that tasks are executed in the correct order.
+===================================================================================================
+Web APIs:
+  Interfaces provided by the browser that allow you interact with the: 
+    Browser.
+    Underlying operating system. 
+  Set of APIs provided by the browser environment. 
+    Allows interaction with the browser and the system.
+  These APIs are not part of the JS language.
+    But are accessible through JS running in a web browser.
+  Include both synchronous functions and asynchronous functions.
+===================================================================================================
+Console:
+  Object, including methods like `console.log`. 
+    For logging information to the browser's console.
+  Part of the Web APIs provided by the browser environment.
+    Standard feature available in the browser's Web API. 
+  Not part of the core JS language itself. 
+  Accessible in most JavaScript environments due to its integration into the Web APIs by browsers.
+  Doesn't work in the same way as other asynchronous Web API fns like -setTimeout- or -fetch-. 
+  When you call `console.log`, it is executed synchronously and directly on the call stack. 
+    It doesn't involve the event loop or callback queue because it is a synchronous operation. 
+  Synchronous Execution: 
+    `console.log` is synchronous.
+      Executed immediately without waiting for other operations to complete.
+  No Redirection to Web API: 
+    Unlike asynchronous operations -`setTimeout`, `fetch`-. 
+    `console.log` doesn't get redirected to the Web API. 
+      Does not involve the event loop or callback queue.
+  Call Stack: 
+    `console.log` operates directly on the call stack, executing and returning immediately.  
+
+
+===================================================================================================
+JavaScript Environment:
+  Refers to the runtime environment where JavaScript code is executed. 
+  It provides various objects, methods, and functionalities. 
+    Allowing JS to interact with the system it's running on, be it a web browser or a server. 
+  The environment includes: 
+    the JS engine. 
+    the host environment -such as a web browser or Node.js-. 
+    the Web APIs or Node.js APIs that provide additional capabilities.
+  Components of a JavaScript Environment
+    JavaScript Engine:
+      A program or interpreter that executes JavaScript code.
+      Examples include:
+        V8 (used in Chrome and Node.js). 
+        SpiderMonkey (used in Firefox).
+        JavaScriptCore (used in Safari).
+      The engine parses and executes the JavaScript code, performing tasks like: 
+        memory management and JIT (Just-In-Time) compilation for performance optimization.
+    Host Environment:
+      The environment in which the JavaScript engine runs. 
+        This could be a web browser, a server, or even an embedded device.
+      Each host environment provides its own set of APIs to interact with the system.
+    Web APIs:
+      In a web browser environment, Web APIs are provided by the browser.
+        Enable JS to interact with the browser and perform tasks such as: 
+          Manipulating the DOM (Document Object Model). 
+          handling events. 
+          Making HTTP requests -via `fetch` or `XMLHttpRequest`-. 
+          More and more.
+      Examples include `console`, `document`, `window`, `fetch`, `setTimeout`, and `localStorage`.
+    Node.js APIs:
+      In a Node.js environment, Node.js provides APIs that allow JavaScript to: 
+        Interact with the server's operating system, file system, and network.
+      Examples include: 
+        `fs` -file system operations-. 
+        `http` -creating web servers-. 
+        `process` -interacting with the current Node.js process-.
+        More and more.
+
+
+===================================================================================================
+Call Stack with Synchronous and Asynchronus functions:
+  Execution Flow: 
+    Synchronous fns block the call stack until they complete.
+    Asynchronous fns: 
+      Allow the call stack to clear.
+      Their callbacks to be handled later by the event loop.
+===================================================================================================
+===================================================================================================
+
+To Ask:
+  Line 15 "moving the stack pointer"
+  Line 58 "potential fragmentation"
+  Line 67 "persist beyond the function scope."
+  Line 11 "Expression Evaluation"
+
+
+PROMISES
+EVENT LOOP
+WEB APIs 
+(Micro)task Queue
+CALLBACK QUEUE
+SYNCHRONUS VS Asynchronus ASYNCHRONUS programming
