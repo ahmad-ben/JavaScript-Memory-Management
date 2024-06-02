@@ -1,7 +1,0 @@
-### Summary
-
-- **JavaScript Engine**: The core component that executes JavaScript code.
-- **Host Environment**: The context in which the JavaScript engine runs, providing additional APIs.
-  - **Web Browsers**: Provide Web APIs for interacting with the browser and web pages.
-  - **Node.js**: Provides APIs for server-side operations and interacting with the operating system.
-- **Web APIs and Node.js APIs**: Extend the functionality of JavaScript to interact with the environment and perform various tasks.

@@ -241,8 +241,6 @@ Console:
       Does not involve the event loop or callback queue.
   Call Stack: 
     `console.log` operates directly on the call stack, executing and returning immediately.  
-
-
 ===================================================================================================
 JavaScript Environment:
   Refers to the runtime environment where JavaScript code is executed. 
@@ -261,10 +259,12 @@ JavaScript Environment:
         JavaScriptCore (used in Safari).
       The engine parses and executes the JavaScript code, performing tasks like: 
         memory management and JIT (Just-In-Time) compilation for performance optimization.
+      The core component that executes JavaScript code.
     Host Environment:
       The environment in which the JavaScript engine runs. 
         This could be a web browser, a server, or even an embedded device.
       Each host environment provides its own set of APIs to interact with the system.
+      The context in which the JavaScript engine runs, providing additional APIs.
     Web APIs:
       In a web browser environment, Web APIs are provided by the browser.
         Enable JS to interact with the browser and perform tasks such as: 
@@ -281,8 +281,14 @@ JavaScript Environment:
         `http` -creating web servers-. 
         `process` -interacting with the current Node.js process-.
         More and more.
-
-
+  Web APIs and Node.js APIs: 
+    Extend the functionality of JS to interact with the environment and perform various tasks.
+===================================================================================================
+  Web Browsers: 
+    Provide Web APIs for interacting with the browser and web pages.
+  Node.js: 
+    Provides APIs for server-side operations and interacting with the operating system.
+  
 ===================================================================================================
 Call Stack with Synchronous and Asynchronus functions:
   Execution Flow: 
